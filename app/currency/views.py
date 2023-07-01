@@ -1,6 +1,6 @@
-from django.shortcuts import render
 from django.http.response import HttpResponse
 from currency.models import Rate, ContactUs
+
 
 def rate_list(request):
     results = []
@@ -20,7 +20,7 @@ def contact_list(request):
 
     for contact in contacts:
         result.append(
-            f'ID: {contact.id}, email_from: {contact.email_from}, subject: {contact.subject}, message: {contact.message}'
+            f'ID: {contact.id}, email_from: {contact.email_from}, subject: {contact.subject},\
+            message: {contact.message}'
         )
     return HttpResponse(str(result))
-        

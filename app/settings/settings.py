@@ -43,7 +43,7 @@ EXTERNAL_APPS = [
     'django_extensions',
 ]
 
-INTERNAL_APPS =[
+INTERNAL_APPS = [
     'currency',
 ]
 
