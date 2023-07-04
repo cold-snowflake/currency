@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('buy', models.DecimalField(decimal_places=2, max_digits=6)),
                 ('sell', models.DecimalField(decimal_places=2, max_digits=6)),
                 ('created', models.DateTimeField()),
-                ('currency_type', models.CharField(max_length=3)),
+                ('currency', models.CharField(max_length=3)),
                 ('source', models.CharField(max_length=68)),
             ],
         ),
