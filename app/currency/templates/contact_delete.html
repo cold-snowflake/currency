@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Source delete
+  Contact delete
 {% endblock %}
 
 {% block content %}
-Are you sure you want to delete source with id: {{ object.id }}?
+Are you sure you want to delete contact with id: {{ object.id }}?
   
   <form method="post">
     {% csrf_token %}

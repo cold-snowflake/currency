@@ -6,9 +6,9 @@
 
 {% block content %}
 
-   <a href="/rate/create">Create</a></br>
+   <a href="{% url 'currency:rate-create' %}">Create</a></br>
 
-    {% for rate in rates %}
+    {% for rate in rate_list %}
     <table>
         <tr>
             <td>Id: {{ rate.id }}</td>
@@ -17,9 +17,9 @@
             <td>Created: {{ rate.created }}</td>
             <td>Currency: {{ rate.currency }}</td>
             <td>Source: {{ rate.source}}</td>
-            <td><a href="/rate/details/{{ rate.id }}">Details</a></td>
-            <td><a href="/rate/update/{{ rate.id }}">Edit</a></td> 
-            <td><a href="/rate/delete/{{ rate.id }}">Delete</a></td>
+            <td><a href="{% url 'currency:rate-details' rate.id %}">Details</a></td>
+            <td><a href="{% url 'currency:rate-update' rate.id %}">Edit</a></td> 
+            <td><a href="{% url 'currency:rate-delete' rate.id %}">Delete</a></td>
         </tr>
     </table>
     {% endfor %}
