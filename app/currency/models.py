@@ -19,11 +19,19 @@ class Rate(models.Model):
 
 
 class ContactUs(models.Model):
-    email_from = models.EmailField(blank=False)
-    subject = models.CharField(max_length=25)
-    message = models.CharField(max_length=250)
+    email_from = models.EmailField(_('Email from'), blank=False)
+    subject = models.CharField(_('Subject'), max_length=25)
+    message = models.CharField(_('Message'), max_length=250)
+    
+    class Meta:
+        verbose_name = _('Contact us')
+        verbose_name_plural = _('Contact us')
 
 
 class Source(models.Model):
-    source_url = models.CharField(max_length=255)
-    name = models.CharField(max_length=64)
+    source_url = models.CharField(_('Source url'),max_length=255)
+    name = models.CharField(_('Name'), max_length=64)
+
+    class Meta:
+        verbose_name = _('Source')
+        verbose_name_plural = _('Sources')
