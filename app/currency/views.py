@@ -3,7 +3,7 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 
-from currency.models import Rate, ContactUs, Source
+from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
 
 from django.conf import settings
@@ -116,3 +116,8 @@ class SourceDeleteView(DeleteView):
 class SourceDetailView(DetailView):
     model = Source
     template_name = 'source_details.html'
+
+
+class RequestResponseLogView(ListView):
+    model = RequstResponseLog
+    template_name = 'request_response_log.html'

@@ -3,7 +3,8 @@ from django.urls import path
 from currency.views import (
     RateListView, RateCreateView, RateUpdateView, RateDetailView, RateDeleteView,
     ContactListView, ContactCreateView, ContactUpdateView, ContactDeleteView, ContactDetailView,
-    SourceListView, SourceCreateView, SourceUpdateView, SourceDeleteView, SourceDetailView
+    SourceListView, SourceCreateView, SourceUpdateView, SourceDeleteView, SourceDetailView,
+    RequestResponseLogView,
 )
 
 app_name = 'currency'
@@ -23,5 +24,7 @@ urlpatterns = [
     path('source/create/', SourceCreateView.as_view(), name='source-create'),
     path('source/update/<int:pk>/', SourceUpdateView.as_view(), name='source-update'),
     path('source/delete/<int:pk>/', SourceDeleteView.as_view(), name='source-delete'),
-    path('source/details/<int:pk>/', SourceDetailView.as_view(), name='source-detail')
+    path('source/details/<int:pk>/', SourceDetailView.as_view(), name='source-detail'),
+    path('request/response/log', RequestResponseLogView.as_view(), name='request-response-log')
+
 ]
