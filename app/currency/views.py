@@ -15,28 +15,40 @@ class RateListView(ListView):
     template_name = 'rate_list.html'
 
 
-class RateCreateView(CreateView):
+class RateCreateView(LoginRequiredMixin, CreateView):
     form_class = RateForm
     template_name = 'rate_create.html'
     success_url = reverse_lazy('currency:rate-list')
 
+    def get_object(self, queryset=None):
+        return self.request.user.is_superuser
 
-class RateUpdateView(UpdateView):
+
+class RateUpdateView(LoginRequiredMixin, UpdateView):
     model = Rate
     form_class = RateForm
     template_name = 'rate_update.html'
     success_url = reverse_lazy('currency:rate-list')
 
+    def get_object(self, queryset=None):
+        return self.request.user.is_superuser
 
-class RateDetailView(DetailView):
+
+class RateDetailView(LoginRequiredMixin, DetailView):
     model = Rate
     template_name = 'rate_details.html'
 
+    def get_object(self, queryset=None):
+        return self.request.user
 
-class RateDeleteView(DeleteView):
+
+class RateDeleteView(LoginRequiredMixin, DeleteView):
     model = Rate
     template_name = 'rate_delete.html'
     success_url = reverse_lazy('currency:rate-list')
+
+    def get_object(self, queryset=None):
+        return self.request.user.is_superuser
 
 
 class ContactListView(ListView):
