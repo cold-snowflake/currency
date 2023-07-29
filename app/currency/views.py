@@ -1,7 +1,10 @@
 from django.views.generic import (
-    ListView, CreateView, UpdateView, DetailView, DeleteView,
+    ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView,
 )
 from django.urls import reverse_lazy
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from currency.models import Rate, ContactUs, Source
 from currency.forms import RateForm, SourceForm, ContactForm
@@ -92,3 +95,21 @@ class SourceDeleteView(DeleteView):
 class SourceDetailView(DetailView):
     model = Source
     template_name = 'source_details.html'
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    queryset = get_user_model().objects.all()
+    model = get_user_model()
+    template_name = 'registration/profile_update.html'
+    success_url = reverse_lazy("index")
+    fields = (
+        'first_name',
+        'last_name'
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
