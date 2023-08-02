@@ -148,4 +148,4 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'snowflakecold1@gmail.com'
-EMAIL_HOST_PASSWORD = 'dpkeibhdmsgitlsi'
+EMAIL_HOST_PASSWORD = '************'

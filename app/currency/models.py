@@ -39,7 +39,7 @@ class Source(models.Model):
 
 class RequstResponseLog(models.Model):
     path = models.CharField(_('Path'), max_length=185)
-    request_method = models.CharField(_('Request method'), max_length=50)
+    request_method = models.CharField(_('Request method'), max_length=50, default="GET")
     time = models.DecimalField(_('Time'), max_digits=4, decimal_places=2)
     created = models.DateTimeField(_("Created"), auto_now_add=True)
 
