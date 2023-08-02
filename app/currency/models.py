@@ -35,3 +35,14 @@ class Source(models.Model):
     class Meta:
         verbose_name = _('Source')
         verbose_name_plural = _('Sources')
+
+
+class RequstResponseLog(models.Model):
+    path = models.CharField(_('Path'), max_length=185)
+    request_method = models.CharField(_('Request method'), max_length=50, default="GET")
+    time = models.DecimalField(_('Time'), max_digits=4, decimal_places=2)
+    created = models.DateTimeField(_("Created"), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Request Respose Log")
+        verbose_name_plural = _("Request Respose Logs")
