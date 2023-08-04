@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    Request response log
+{% endblock title %}
+
+{% block content %}
+    Request response log
+      {% for request in request_response_log %}
+         <tr>
+            <td>Id: {{ request.id }}</td>
+            <td>Path: {{ request.path }}</td>
+            <td>Request Method: {{ request.request_method }}</td>
+            <td>Time: {{ request.time }}</td>
+         </tr>
+      {% endfor %}
+   </table>
+   
+
+{% endblock content %}

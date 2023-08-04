@@ -2,6 +2,7 @@
     <a href="{% url 'currency:rate-list' %}"> Rates</a>
     <a href="{% url 'currency:contact-list' %}">Contact us</a>
     <a href="{% url 'currency:source-list' %}">Source</a>
+
      
     {% if request.user.is_authenticated %}
         Hello {{ request.user.email }}!
@@ -12,4 +13,7 @@
         <a href="{% url 'login' %}">Log In</a>
     {% endif %}
     
+
+    <a href="{% url 'currency:request-response-log' %}">Request responce log</a>
+
 </p>
