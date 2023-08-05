@@ -136,7 +136,7 @@ class ProfileView(LoginRequiredMixin, UpdateView):
     fields = (
         'first_name',
         'last_name'
-    ) 
+    )
 
     def get_object(self, queryset=None):
         return self.request.user
