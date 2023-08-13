@@ -11,7 +11,7 @@ class Rate(models.Model):
         _('Currency'),
         choices=RateCurrencyChoices.choices,
         default=RateCurrencyChoices.USD)
-    source = models.CharField(_('Source'), max_length=68)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')
 
     class Meta:
         verbose_name = _('Rate')
@@ -35,6 +35,9 @@ class Source(models.Model):
     class Meta:
         verbose_name = _('Source')
         verbose_name_plural = _('Sources')
+
+    def __str__(self):
+        return self.name
 
 
 class RequstResponseLog(models.Model):
