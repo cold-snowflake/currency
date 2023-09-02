@@ -14,6 +14,10 @@ from django.core.mail import send_mail
 
 class RateListView(UserPassesTestMixin, ListView):
     queryset = Rate.objects.all()
+=======
+class RateListView(ListView):
+    queryset = Rate.objects.all().select_related('source')
+
     template_name = 'rate_list.html'
 
     def test_func(self):

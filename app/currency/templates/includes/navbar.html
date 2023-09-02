@@ -17,6 +17,6 @@
     {% else %}
     <a href="{% url 'login' %}">Login</a>
     |
-    <a href="#">Sign Up</a>   
+    <a href="{% url 'account:signup' %}">Sign Up</a>   
     {% endif %}
 </p>

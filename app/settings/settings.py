@@ -53,6 +53,7 @@ EXTERNAL_APPS = [
 
 INTERNAL_APPS = [
     'currency',
+    'account',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
@@ -145,6 +146,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+=======
+DEFAULT_FROM_EMAIL = 'snowflakecold1@gmail.com'
+
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_USE_TLS = True
@@ -157,3 +162,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 LOGIN_URL = reverse_lazy('login')
+
+AUTH_USER_MODEL = 'account.User'
+
+DOMAIN = '0.0.0.0:8000'
+HTTP_PROTOCOL = 'http'
