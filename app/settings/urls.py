@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from currency.views import IndexView, ProfileView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -31,6 +32,10 @@ urlpatterns = [
     path('account/', include('account.urls')),
 
     path('', IndexView.as_view(), name='index'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/(<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_complete'),
 
 
     ]
