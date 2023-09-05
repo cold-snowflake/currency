@@ -1,4 +1,5 @@
-from django.views.generic import CreateView, RedirectView
+from django.views.generic import CreateView, RedirectView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from account.forms import UserSignUpForm
@@ -22,3 +23,17 @@ class UserActivationView(RedirectView):
             user.save(update_fields=['is_active'])
         url = super().get_redirect_url(*args, **kwargs)
         return url
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    queryset = get_user_model().objects.all()
+    template_name = 'registration/profile_view.html'
+    success_url = reverse_lazy('index')
+    fields = (
+        'first_name',
+        'last_name',
+        'avatar'
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user

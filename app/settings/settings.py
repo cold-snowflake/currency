@@ -48,7 +48,8 @@ EXTERNAL_APPS = [
     'django_extensions',
     'debug_toolbar',
     'rangefilter',
-    'import_export'
+    'import_export',
+    'storages',
 ]
 
 INTERNAL_APPS = [
@@ -140,6 +141,23 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.parent / 'var' / 'media'
+
+# AWS_S3_REGION_NAME = 'fra1'
+# AWS_S3_ENDPOINT_URL = 'https://hhhhf.fra1.digitaloceanspaces.com'
+# STORAGES = {
+#     "default": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"},
+#     "staticfiles": {"BACKEND": "django.core.files.storage.FileSystemStorage"}
+# }
+# AWS_ACCESS_KEY_ID = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = 'media'
+# MEDIA_URL = 'media/'
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -147,7 +165,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-=======
 DEFAULT_FROM_EMAIL = 'snowflakecold1@gmail.com'
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
