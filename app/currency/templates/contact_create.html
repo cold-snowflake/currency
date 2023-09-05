@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
   Conact us create
@@ -7,9 +8,9 @@
 {% block content %}
 Create Contact us Form
   
-  <form method="post">
+  <form class="my-class" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button>Submit</button>
   </form>
 {% endblock %}

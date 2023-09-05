@@ -8,6 +8,7 @@
 
 
 {% block content %}
+{% load crispy_forms_tags %}
     Update Profile Form
     <br>
 <!-- {#    {% if user.avatar %}#}
@@ -19,7 +20,7 @@
     <img src="{{ user.avatar_url }}" alt="avatar" height="100px" width="150px">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit">Submit</button>
     </form>
 

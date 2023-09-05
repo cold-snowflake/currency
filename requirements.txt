@@ -13,3 +13,5 @@ sqlparse==0.4.4
 tzdata==2023.3
 django-storages
 boto3
+django-crispy-forms
+crispy-bootstrap4

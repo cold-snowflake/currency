@@ -50,6 +50,8 @@ EXTERNAL_APPS = [
     'rangefilter',
     'import_export',
     'storages',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 INTERNAL_APPS = [
@@ -187,3 +189,7 @@ AUTH_USER_MODEL = 'account.User'
 
 DOMAIN = '0.0.0.0:8000'
 HTTP_PROTOCOL = 'http'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
