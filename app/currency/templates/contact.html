@@ -4,20 +4,42 @@
 {% endblock title %}
 
 {% block content %}
-<a href="{% url 'currency:contact-create' %}">Create</a><br>
-   <table border="1" cellpadding="5">
-      {% for contact in contactus_list %}
-         <tr>
-            <td>Id: {{ contact.id }}</td>
-            <td>Email from: {{ contact.email_from }}</td>
-            <td>Subject: {{ contact.subject}}</td>
-            <td>Message: {{ contact.message }}</td>
-            <td><a href="{% url 'currency:contact-update' contact.id %}">Edit</a></td>
-            <td><a href="{% url 'currency:contact-delete' contact.id %}">Delete</a></td>
-            <td><a href="{% url 'currency:contact-detail' contact.id %}">Details</a></td>
-         </tr>
-      {% endfor %}
-   </table>
-   
-
+<div class="row">
+   <p>
+   <a href="{% url 'currency:contact-create' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Create</a>
+   </p>
+</div>
+<div class="row">
+<table class="table table-dark">
+   <thead>
+     <tr>
+       <th scope="col">ID</th>
+       <th scope="col">Email from</th>
+       <th scope="col">Subject</th>
+       <th scope="col">Message</th>
+     </tr>
+   </thead>
+   <tbody>
+   {% for contact in contactus_list %}
+     <tr>
+       <td>{{ contact.id }}</td>
+       <td>{{ contact.email_from }}</td>
+       <td>{{ contact.subject }}</td>
+       <td>{{ contact.message }}</td>
+       <td><div class="dropdown">
+         <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+           Dropdown
+         </button>
+         <div class="dropdown-menu">
+           <button class="dropdown-item" type="button"><a href="{% url 'currency:contact-update' contact.id %}">Edit</a></button>
+           <button class="dropdown-item" type="button"><a href="{% url 'currency:contact-delete' contact.id %}">Delete</a></button>
+           <button class="dropdown-item" type="button"><a href="{% url 'currency:contact-detail' contact.id %}">Details</a></button>
+         </div>
+       </div>
+      </td>
+     </tr>
+   {% endfor %}
+   </tbody>
+ </table>
+</div>
 {% endblock content %}

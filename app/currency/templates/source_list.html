@@ -4,19 +4,41 @@
   Source list
 {% endblock title %}
 
-
 {% block content %}
-<a href="{% url 'currency:source-create' %}">Create</a><br>
-    <table>
-      {% for src in source_list %}
-        <tr>
-          <td>Id: {{ src.id }}</td>
-          <td> Source url: {{ src.source_url }}</td>
-          <td>Name: {{ src.name }}</td>
-          <td><a href="{% url 'currency:source-update' src.id %}">Edit</a></td>
-          <td><a href="{% url 'currency:source-delete' src.id %}">Delete</a></td>
-          <td><a href="{% url 'currency:source-detail' src.id %}">Details</a></td>
-        </tr>
-      {% endfor %}
-    </table>
+<div class="row">
+    <p>
+        <a href="{% url 'currency:source-create' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Create</a>   
+    </p>
+ </div>
+ <div class="row">
+ <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Source url</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for src in source_list %}
+      <tr>
+        <td>{{ src.id }}</td>
+        <td>{{ src.source_url }}</td>
+        <td>{{ src.name }}</td>
+        <td><div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </button>
+          <div class="dropdown-menu">
+            <button class="dropdown-item" type="button"><a href="{% url 'currency:source-update' src.id %}">Edit</a></button>
+            <button class="dropdown-item" type="button"><a href="{% url 'currency:source-delete' src.id %}">Delete</a></button>
+            <button class="dropdown-item" type="button"><a href="{% url 'currency:source-detail' src.id %}">Details</a></button>
+          </div>
+        </div>
+       </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+ </div>
 {% endblock content %}
