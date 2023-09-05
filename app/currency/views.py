@@ -12,12 +12,9 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 
-class RateListView(UserPassesTestMixin, ListView):
-    queryset = Rate.objects.all().select_related('source')
+class RateListView(ListView):
+    queryset = Rate.objects.all()
     template_name = 'rate_list.html'
-
-    def test_func(self):
-        return self.request.user.is_superuser
 
 
 class RateCreateView(UserPassesTestMixin, CreateView):

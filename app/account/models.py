@@ -1,7 +1,8 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
-import uuid
+from django.templatetags.static import static
 
 
 def avatar_path(instance, filename):
@@ -20,6 +21,13 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    @property
+    def avatar_url(self):
+        if self.avatar:
+            return self.avatar.url
+
+        return static('users/7461.png_1200.png')
 
     def save(self, *args, **kwargs):
 
