@@ -16,15 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from currency.views import IndexView, ProfileView
+from currency.views import IndexView
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path("auth/", include('django.contrib.auth.urls')),
-    path("auth/profile/", ProfileView.as_view(), name='profile'),
 
     path("__debug__/", include("debug_toolbar.urls")),
 
@@ -37,5 +38,6 @@ urlpatterns = [
     path('reset/(<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_complete'),
 
-
     ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

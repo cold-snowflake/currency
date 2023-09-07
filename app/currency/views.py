@@ -1,27 +1,20 @@
 from django.views.generic import (
     ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 )
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
-from django.contrib.auth import get_user_model
 
 from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
+
 
 from django.conf import settings
 from django.core.mail import send_mail
 
 
-class RateListView(UserPassesTestMixin, ListView):
-    queryset = Rate.objects.all()
-=======
 class RateListView(ListView):
-    queryset = Rate.objects.all().select_related('source')
-
+    queryset = Rate.objects.all()
     template_name = 'rate_list.html'
-
-    def test_func(self):
-        return self.request.user.is_superuser
 
 
 class RateCreateView(UserPassesTestMixin, CreateView):
@@ -143,16 +136,3 @@ class RequestResponseLogView(ListView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-
-
-class ProfileView(LoginRequiredMixin, UpdateView):
-    queryset = get_user_model().objects.all()
-    template_name = 'registration/profile_view.html'
-    success_url = reverse_lazy('index')
-    fields = (
-        'first_name',
-        'last_name'
-    )
-
-    def get_object(self, queryset=None):
-        return self.request.user

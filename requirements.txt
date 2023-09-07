@@ -11,3 +11,7 @@ pyflakes==3.0.1
 python-dotenv==1.0.0
 sqlparse==0.4.4
 tzdata==2023.3
+django-storages
+boto3
+django-crispy-forms
+crispy-bootstrap4
