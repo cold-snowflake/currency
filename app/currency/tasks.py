@@ -57,6 +57,42 @@ def parse_privatbank():
 
 
 @shared_task
+def parse_monobank():
+    from currency.models import Rate, Source
+
+    source = Source.objects.filter(code_name=consts.MONO_BANK_CODE_NANE).first()
+
+    if source is None:
+        source = Source.objects.create(code_name=consts.MONO_BANK_CODE_NANE, name='MonoBank')
+
+    url = 'https://api.monobank.ua/bank/currency'
+    response = requests.get(url)
+    response.raise_for_status()
+
+    rates = response.json()
+
+    available_currencies = {
+        840: RateCurrencyChoices.USD,
+        978: RateCurrencyChoices.EUR
+        }
+
+    for rate in rates:
+        currency = rate['currencyCodeA']
+        buy = to_2_decimal(rate['rateBuy'])
+        sale = to_2_decimal(rate['rateSell'])
+
+        if currency not in available_currencies:
+            continue
+
+        last_rate = Rate.objects.filter(source=source, currency=currency)\
+            .order_by('-created')\
+            .first()
+
+        if last_rate is None or last_rate.buy != buy or last_rate.sell != sale:
+            Rate.objects.create(buy=buy, sell=sale, source=source, currency=available_currencies[currency])
+
+
+@shared_task
 def send_email_to_background(subject, message):
     from time import sleep
     recipient = settings.EMAIL_HOST_USER
