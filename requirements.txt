@@ -16,3 +16,4 @@ boto3
 django-crispy-forms
 crispy-bootstrap4
 Celery
+requests
