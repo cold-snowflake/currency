@@ -193,3 +193,5 @@ HTTP_PROTOCOL = 'http'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+CELERY_BROKER_URL = 'amqp://localhost'
