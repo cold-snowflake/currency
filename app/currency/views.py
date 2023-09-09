@@ -6,10 +6,7 @@ from django.urls import reverse_lazy
 
 from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
-
-
-from django.conf import settings
-from django.core.mail import send_mail
+from currency.tasks import send_email_to_background
 
 
 class RateListView(ListView):
@@ -61,19 +58,19 @@ class ContactCreateView(CreateView):
     success_url = reverse_lazy('currency:contact-list')
 
     def _send_mail(self):
-        recipient = settings.EMAIL_HOST_USER
         subject = "User Contact Us"
         message = f'''
         Email_from: {self.object.email_from},
         Subject: {self.object.subject},
         Message: {self.object.message}
-        '''
-        send_mail(
-            subject,
-            message,
-            recipient,
-            [recipient],
-            fail_silently=False
+    '''
+
+        send_email_to_background.apply_async(
+            kwargs={
+                'subject': subject,
+                'message': message
+            },
+            countdown=10
         )
 
     def form_valid(self, form):

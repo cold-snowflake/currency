@@ -31,6 +31,7 @@ class ContactUs(models.Model):
 class Source(models.Model):
     source_url = models.CharField(_('Source url'), max_length=255)
     name = models.CharField(_('Name'), max_length=64)
+    code_name = models.CharField(_('Code name'), max_length=38, unique=True)
 
     class Meta:
         verbose_name = _('Source')
