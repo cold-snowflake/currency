@@ -10,6 +10,7 @@ from currency.tasks import send_email_to_background
 
 
 class RateListView(ListView):
+    paginate_by = 10
     queryset = Rate.objects.all()
     template_name = 'rate_list.html'
 
