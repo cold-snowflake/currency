@@ -12,6 +12,20 @@
     {% endif %}    
     </p>
  </div>
+<p>
+ <div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
+    Filter
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+    <form class="btn btn-secondary dropdown-toggle" method="get">
+      {{ filter.form.as_p }}
+      <button class="dropdown-item" type="submit" >Submit</button>
+    </form>
+  </div>
+</div>
+</p>
+
  <div class="row">
  <table class="table table-dark">
     <thead>

@@ -1,18 +1,28 @@
 from django.views.generic import (
     ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 )
+from django_filters.views import FilterView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
 
 from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
+from currency.filters import RateFilter
 from currency.tasks import send_email_to_background
 
 
-class RateListView(ListView):
+class RateListView(FilterView):
     paginate_by = 10
     queryset = Rate.objects.all()
+    filterset_class = RateFilter
     template_name = 'rate_list.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['filter_params'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items()
+            if key != 'page')
+        return context
 
 
 class RateCreateView(UserPassesTestMixin, CreateView):
