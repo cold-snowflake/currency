@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 
 from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
-from currency.filters import RateFilter
+from currency.filters import RateFilter, ContactUsFilter
 from currency.tasks import send_email_to_background
 
 
@@ -58,9 +58,18 @@ class RateDeleteView(UserPassesTestMixin, DeleteView):
         return self.request.user.is_superuser
 
 
-class ContactListView(ListView):
+class ContactListView(FilterView):
+    paginate_by = 10
+    filterset_class = ContactUsFilter
     queryset = ContactUs.objects.all()
     template_name = 'contact.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['filter_params'] = '&'.join(
+            f'{key}={value}' for key, value in self.request.GET.items()
+            if key != 'page')
+        return context
 
 
 class ContactCreateView(CreateView):
