@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 
 from currency.models import Rate, ContactUs, Source, RequstResponseLog
 from currency.forms import RateForm, SourceForm, ContactForm
-from currency.filters import RateFilter, ContactUsFilter
+from currency.filters import RateFilter, ContactUsFilter, SourceFilter
 from currency.tasks import send_email_to_background
 
 
@@ -117,7 +117,9 @@ class ContactDetailView(DetailView):
     template_name = 'contact_details.html'
 
 
-class SourceListView(ListView):
+class SourceListView(FilterView):
+    paginate_by = 10
+    filterset_class = SourceFilter
     queryset = Source.objects.all()
     template_name = 'source_list.html'
 

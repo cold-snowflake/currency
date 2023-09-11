@@ -1,5 +1,5 @@
 import django_filters
-from currency.models import Rate, ContactUs
+from currency.models import Rate, ContactUs, Source
 
 
 class RateFilter(django_filters.FilterSet):
@@ -21,4 +21,14 @@ class ContactUsFilter(django_filters.FilterSet):
             'email_from',
             'subject',
             'message',
+        )
+
+
+class SourceFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Source
+        fields = (
+            'source_url',
+            'name',
         )
