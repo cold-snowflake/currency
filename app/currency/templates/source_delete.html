@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
   Source delete
 {% endblock %}
 
 {% block content %}
+<p>
+  <img class="logo" src="{% static 'logo/logo.jpg' %}" alt="avatar" height="200px" width="800px">
+</p>
 Are you sure you want to delete source with id: {{ object.id }}?
   
   <form method="post">
