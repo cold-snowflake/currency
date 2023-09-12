@@ -28,10 +28,17 @@ class ContactUs(models.Model):
         verbose_name_plural = _('Contact us')
 
 
+def source_logo(instance, filename):
+    return f"source/logos/{instance.name}/{filename}"
+
+
 class Source(models.Model):
     source_url = models.CharField(_('Source url'), max_length=255)
     name = models.CharField(_('Name'), max_length=64)
     code_name = models.CharField(_('Code name'), max_length=38, unique=True)
+    logo = models.FileField(
+        default=None, null=True, blank=True, upload_to=source_logo
+    )
 
     class Meta:
         verbose_name = _('Source')

@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
   Source create
 {% endblock %}
 
 {% block content %}
+<p>
+  <img class="logo" src="{% static 'logo/logo.jpg' %}" alt="avatar" height="200px" width="800px">
+</p>
 Create Source Form
   
   <form method="post">

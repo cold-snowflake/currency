@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Source Details
 {% endblock title %}
 
 {% block content %}
+   <p>
+    <img class="logo" src="{% static 'logo/logo.jpg' %}" alt="avatar" height="200px" width="800px">
+   </p>
         Id: {{ source.id }} <br>
         Source url: {{ source.source_url }} <br>
         Name: {{ source.name }}<br>
