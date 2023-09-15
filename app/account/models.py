@@ -10,6 +10,7 @@ def avatar_path(instance, filename):
 
 
 class User(AbstractUser):
+    phone_number = models.CharField(_("phone number"), max_length=15, unique=True)
     email = models.EmailField(_('email addres'), unique=True)
     avatar = models.FileField(
         _('Avatar'),

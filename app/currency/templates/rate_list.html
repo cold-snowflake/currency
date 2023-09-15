@@ -12,6 +12,20 @@
     {% endif %}    
     </p>
  </div>
+<p>
+ <div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
+    Filter
+  </button>
+  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+    <form class="btn btn-secondary dropdown-toggle" method="get">
+      {{ filter.form.as_p }}
+      <button class="dropdown-item" type="submit" >Submit</button>
+    </form>
+  </div>
+</div>
+</p>
+
  <div class="row">
  <table class="table table-dark">
     <thead>
@@ -27,10 +41,12 @@
     <tbody>
         {% for rate in rate_list %}
       <tr>
-        <td>{{ contact.id }}</td>
-        <td>{{ contact.email_from }}</td>
-        <td>{{ contact.subject }}</td>
-        <td>{{ contact.message }}</td>
+        <td>{{ rate.id }}</td>
+        <td>{{ rate.sell }}</td>
+        <td>{{ rate.buy }}</td>
+        <td>{{ rate.created }}</td>
+        <td>{{ rate.currency }}</td>
+        <td>{{ rate.source }}</td>
         <td><div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -47,4 +63,11 @@
     </tbody>
   </table>
  </div>
+
+<div class="row">
+  <div class="col-12">
+    {% include 'includes/pagination.html' %}
+  </div>
+
+</div>
 {% endblock content %}
