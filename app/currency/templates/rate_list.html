@@ -5,6 +5,19 @@
 {% endblock title %}
 
 {% block content %}
+<p>
+  <div class="btn-group">
+   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
+     Filter
+   </button>
+   <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+     <form class="btn btn-secondary dropdown-toggle" method="get">
+       {{ filter.form.as_p }}
+       <button class="dropdown-item" type="submit" >Submit</button>
+     </form>
+   </div>
+ </div>
+ </p>
 <div class="row">
     <p>
     {% if request.user.is_authenticated %}
@@ -12,19 +25,6 @@
     {% endif %}    
     </p>
  </div>
-<p>
- <div class="btn-group">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-expanded="false">
-    Filter
-  </button>
-  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-    <form class="btn btn-secondary dropdown-toggle" method="get">
-      {{ filter.form.as_p }}
-      <button class="dropdown-item" type="submit" >Submit</button>
-    </form>
-  </div>
-</div>
-</p>
 
  <div class="row">
  <table class="table table-dark">
@@ -45,7 +45,7 @@
         <td>{{ rate.sell }}</td>
         <td>{{ rate.buy }}</td>
         <td>{{ rate.created }}</td>
-        <td>{{ rate.currency }}</td>
+        <td>{{ rate.get_currency_display }}</td>
         <td>{{ rate.source }}</td>
         <td><div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
