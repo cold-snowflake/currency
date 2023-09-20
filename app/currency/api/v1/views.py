@@ -4,7 +4,7 @@ from rest_framework_xml.renderers import XMLRenderer
 from rest_framework_yaml.renderers import YAMLRenderer
 
 from currency.models import Rate
-from currency.api.serializers import RateSerializer
+from app.currency.api.v1.serializers import RateSerializer
 
 
 class RatesViewSet(viewsets.ModelViewSet):

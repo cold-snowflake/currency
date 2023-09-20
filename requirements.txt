@@ -22,4 +22,5 @@ djangorestframework
 djangorestframework-yaml
 djangorestframework-xml
 djangorestframework-simplejwt
+drf-yasg
 

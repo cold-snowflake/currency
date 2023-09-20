@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from currency.api.views import (
+from app.currency.api.v1.views import (
     RatesViewSet
 )
 

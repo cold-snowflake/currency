@@ -56,6 +56,7 @@ EXTERNAL_APPS = [
     'crispy_bootstrap4',
     'django_filters',
     'rest_framework',
+    'drf_yasg'
 ]
 
 INTERNAL_APPS = [
