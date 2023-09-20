@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from currency.models import Rate
+from currency.models import Rate, Source
 
 
 class RateSerializer(serializers.ModelSerializer):
@@ -13,4 +13,13 @@ class RateSerializer(serializers.ModelSerializer):
             'created',
             'source',
             'currency'
+        )
+
+
+class SourceSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Source
+        fields = (
+            'source_url',
+            'name'
         )
