@@ -1,19 +1,17 @@
-from django.views.generic import (
-    ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
-)
-from django_filters.views import FilterView
+from currency.filters import ContactUsFilter, RateFilter, SourceFilter
+from currency.forms import ContactForm, RateForm, SourceForm
+from currency.models import ContactUs, Rate, RequstResponseLog, Source
+from currency.tasks import send_email_to_background
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse_lazy
-
-from currency.models import Rate, ContactUs, Source, RequstResponseLog
-from currency.forms import RateForm, SourceForm, ContactForm
-from currency.filters import RateFilter, ContactUsFilter, SourceFilter
-from currency.tasks import send_email_to_background
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
+from django_filters.views import FilterView
 
 
 class RateListView(FilterView):
     paginate_by = 10
-    queryset = Rate.objects.all()
+    queryset = Rate.objects.all().select_related('source')
     filterset_class = RateFilter
     template_name = 'rate_list.html'
 
@@ -155,3 +153,15 @@ class RequestResponseLogView(ListView):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+# def api_rate(queriset):
+#     import json
+#     objects = Rate.objects.all()
+#     object_list = []
+#     for obj in objects:
+#         object_list.append({
+#             'id': obj.id,
+#             'buy': float(obj.buy),
+#             'sell': float(obj.sell)
+#         })
+#     return HttpResponse(json.dumps(object_list), content_type='application/json')
