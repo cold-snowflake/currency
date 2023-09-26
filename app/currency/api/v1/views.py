@@ -45,3 +45,8 @@ class ContactsViewSet(viewsets.ModelViewSet):
 class ContactDetailApiView(generics.RetrieveDestroyAPIView):
     serializer_class = ContactSerializer
     queryset = ContactUs.objects.all()
+
+
+class SourceDetailApiView(generics.RetrieveDestroyAPIView):
+    serializer_class = SourceSerializer
+    queryset = Source.objects.all()
