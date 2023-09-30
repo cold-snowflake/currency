@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from app.currency.api.v1.views import (
-    RatesViewSet, SourcesViewSet, ContactsViewSet, ContactDetailApiView
+    RatesViewSet, SourcesViewSet, ContactsViewSet, ContactDetailApiView, SourceDetailApiView
 )
 
 app_name = 'currency_api'
@@ -13,5 +13,11 @@ router.register('sources/', SourcesViewSet, basename='sources')
 router.register('contacs/', ContactsViewSet, basename='contacts')
 
 urlpatterns = [
-    path("contact/detail-delete/<int:pk>/", ContactDetailApiView.as_view(), name="contact-detail-delete",),
+    path("contact/detail-delete/<int:pk>/", ContactDetailApiView.as_view(), name="contact-detail-delete",
+         ),
+] + router.urls
+
+urlpatterns = [
+    path("source/detail-delete/<int:pk>/", SourceDetailApiView.as_view(), name="source-detail-delete",
+         ),
 ] + router.urls

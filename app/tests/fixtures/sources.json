@@ -1,0 +1,20 @@
+[
+    {
+        "model": "currency.source",
+        "pk": 1,
+        "fields": {
+            "source_url": "",
+            "name": "PrivatBank",
+            "code_name": "privatbank"
+        }
+    },
+    {
+        "model": "currency.source",
+        "pk": 2,
+        "fields": {
+            "source_url": "",
+            "name": "MonoBank",
+            "code_name": "monobank"
+        }
+    }
+]

@@ -94,9 +94,9 @@ def parse_monobank():
 
 @shared_task
 def send_email_to_background(subject, message):
-    from time import sleep
+    # from time import sleep
     recipient = settings.EMAIL_HOST_USER
-    sleep(20)
+    # sleep(20)
     send_mail(
         subject,
         message,

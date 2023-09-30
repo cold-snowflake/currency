@@ -24,3 +24,8 @@ djangorestframework-xml
 djangorestframework-simplejwt
 drf-yasg
 
+# pytest
+pytest
+pytest_django
+pytest-cov
+pytest-mock
