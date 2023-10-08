@@ -10,14 +10,31 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
+import environ
 from datetime import timedelta
 from pathlib import Path
 from celery.schedules import crontab
 from django.urls import reverse_lazy
 
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False),
+    RABBITMQ_DEFAULT_USER=(str, 'guest'),
+    RABBITMQ_DEFAULT_PASS=(str, 'guest'),
+    RABBITMQ_DEFAULT_PORT=(str, '5672'),
+    RABBITMQ_DEFAULT_HOST=(str, 'localhost'),
+    POSTGRES_PASSWORD=(str, 'password'),
+    POSTGRES_USER=(str, ''),
+    POSTGRES_DB=(str, 'currency_db'),
+    POSTGRES_HOST=(str, 'localhost'),
+    POSTGRES_PORT=(str, '5432'),
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR.parent, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -106,8 +123,12 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
@@ -199,7 +220,9 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = f'amqp://{env("RABBITMQ_DEFAULT_USER")}:' \
+                    f'{env("RABBITMQ_DEFAULT_PASS")}@' \
+                    f'{env("RABBITMQ_DEFAULT_HOST")}:{env("RABBITMQ_DEFAULT_PORT")}'
 
 
 CELERY_BEAT_SCHEDULE = {

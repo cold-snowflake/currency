@@ -29,3 +29,5 @@ pytest
 pytest_django
 pytest-cov
 pytest-mock
+
+django-environ
