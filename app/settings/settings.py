@@ -115,6 +115,13 @@ TEMPLATES = [
     },
 ]
 
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+#         "LOCATION": "memcached:11211",
+#     }
+# }
+
 WSGI_APPLICATION = 'settings.wsgi.application'
 
 
@@ -168,9 +175,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATIC_ROOT = BASE_DIR.parent / "var" / "static"
+STATIC_ROOT = "/tmp/static"
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.parent / 'var' / 'media'
