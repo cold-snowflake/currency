@@ -37,7 +37,7 @@ class Source(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     code_name = models.CharField(_('Code name'), max_length=38, unique=True)
     logo = models.FileField(
-        default=None, null=True, blank=True, upload_to=source_logo
+        _('Logo'), default=None, null=True, blank=True, upload_to=source_logo
     )
 
     class Meta:
